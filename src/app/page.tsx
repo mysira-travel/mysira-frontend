@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function HomePage() {
   return (
     <div className="container py-16">
@@ -10,18 +12,18 @@ export default function HomePage() {
           Découvrez les expériences authentiques du Sahara tunisien
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <a
+          <Link
             href="/search"
             className="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             Explorer les expériences
-          </a>
-          <a
+          </Link>
+          <Link
             href="/how-it-works"
             className="inline-flex h-12 items-center justify-center rounded-lg border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             Comment ça marche
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -29,7 +31,7 @@ export default function HomePage() {
       <div className="mt-20 space-y-8">
         {Array.from({ length: 10 }).map((_, i) => (
           <div
-            key={i}
+            key={`test-section-${i}`}
             className="rounded-lg border bg-card p-6 text-card-foreground shadow-sm"
           >
             <h2 className="mb-2 text-2xl font-semibold">Section {i + 1}</h2>

@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 import { MainNavItem } from '@/types/navigation'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription, SheetHeader } from "@/components/ui/sheet"
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
+import { VisuallyHidden } from 'radix-ui'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Logo } from './logo'
 
