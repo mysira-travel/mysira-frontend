@@ -1,0 +1,54 @@
+﻿📁 docs
+    📄 DESIGN_SYSTEM.md
+    📄 project-structure.txt [EMPTY FILE]
+📁 public [EMPTY DIR]
+📁 src
+    📁 app
+        📁 (auth)
+            📁 login [EMPTY DIR]
+            📁 register [EMPTY DIR]
+        📁 (dashboard)
+            📁 admin [EMPTY DIR]
+            📁 provider [EMPTY DIR]
+        📁 (public)
+            📁 directory [EMPTY DIR]
+            📁 listings
+                📁 [id] [EMPTY DIR]
+        📄 favicon.ico
+        📄 globals.css
+        📄 layout.tsx
+        📄 page.tsx
+    📁 components
+        📁 directory [EMPTY DIR]
+        📁 layout [EMPTY DIR]
+        📁 planner [EMPTY DIR]
+        📁 shared [EMPTY DIR]
+        📁 ui
+            📄 button.tsx
+            📄 card.tsx
+            📄 input.tsx
+            📄 select.tsx
+            📄 textarea.tsx
+    📁 config
+        📄 constants.ts
+        📄 site.ts
+    📁 hooks [EMPTY DIR]
+    📁 lib
+        📁 api [EMPTY DIR]
+        📁 validations [EMPTY DIR]
+        📄 utils.ts
+    📁 store [EMPTY DIR]
+    📁 types [EMPTY DIR]
+📄 .gitignore
+📄 AGENTS.md
+📄 CLAUDE.md
+📄 components.json
+📄 eslint.config.mjs
+📄 next.config.ts
+📄 next-env.d.ts
+📄 package.json
+📄 package-lock.json
+📄 postcss.config.mjs
+📄 README.md
+📄 tailwind.config.ts
+📄 tsconfig.json
