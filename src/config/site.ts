@@ -6,6 +6,7 @@ export const siteConfig = {
   
     url: process.env.NEXT_PUBLIC_APP_URL || 'https://mysira-frontend.vercel.app',
   
+    // TODO: Create 1200×630 branded image in /public
     ogImage: '/og-image.jpg',
   
     links: {

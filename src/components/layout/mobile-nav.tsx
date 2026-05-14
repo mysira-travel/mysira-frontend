@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronRight } from 'lucide-react'
+import { Menu, ChevronRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { MainNavItem } from '@/types/navigation'
@@ -23,6 +23,7 @@ export function MobileNav({ items }: MobileNavProps) {
 
     // Close mobile menu on route change
     React.useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setOpen(false)
     }, [pathname])
 
@@ -43,7 +44,7 @@ export function MobileNav({ items }: MobileNavProps) {
                     <SheetHeader>
                         <SheetTitle>Menu de navigation principal</SheetTitle>
                         <SheetDescription>
-                            Accédez aux différentes sections de l'application pour planifier votre voyage dans le Sahara.
+                            Accédez aux différentes sections de l&apos;application pour planifier votre voyage dans le Sahara.
                         </SheetDescription>
                     </SheetHeader>
                 </VisuallyHidden.Root>

@@ -1,5 +1,4 @@
 import { MainNavItem } from '@/types/navigation'
-import { Compass, Map, Users, Palette } from 'lucide-react'
 
 export const mainNavigation: MainNavItem[] = [
   {
