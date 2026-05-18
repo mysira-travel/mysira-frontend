@@ -24,7 +24,7 @@ export function MainNav({ items }: MainNavProps) {
   const pathname = usePathname()
 
   return (
-    <NavigationMenu className="hidden lg:flex">
+    <NavigationMenu className="hidden lg:flex lg:items-center lg:gap-3">
       <NavigationMenuList>
         {items.map((item) => (
           <NavigationMenuItem key={item.href}>
@@ -32,22 +32,23 @@ export function MainNav({ items }: MainNavProps) {
               <>
                 <NavigationMenuTrigger
                   className={cn(
-                    'h-10 font-medium transition-colors hover:text-primary',
+                    'h-10 rounded-full px-4 text-sm font-medium transition-all duration-200',
                     pathname?.startsWith(item.href)
-                      ? 'text-primary'
-                      : 'text-foreground/80'
+                      ? 'bg-primary/15 text-primary-700 ring-1 ring-primary-200'
+                      : 'text-foreground/80 hover:text-primary-700 hover:bg-primary/10'
                   )}
                 >
                   {item.title}
                 </NavigationMenuTrigger>
 
-                <NavigationMenuContent>
-                <ul className="flex w-[280px] flex-col gap-1 p-2">
+                <NavigationMenuContent className="rounded-3xl border border-slate-200/70 bg-white/95 shadow-lg">
+                  <ul className="flex w-[280px] flex-col gap-1 p-3">
                     {item.items.map((subItem) => (
                       <ListItem
                         key={subItem.href}
                         href={subItem.href}
                         title={subItem.title}
+                        isActive={pathname === subItem.href}
                       >
                         {subItem.description}
                       </ListItem>
@@ -61,10 +62,10 @@ export function MainNav({ items }: MainNavProps) {
                   href={item.href}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'h-10 font-medium transition-colors hover:text-primary',
+                    'h-10 rounded-full px-4 text-sm font-medium transition-all duration-200',
                     pathname === item.href
-                      ? 'text-primary'
-                      : 'text-foreground/80'
+                      ? 'bg-primary/15 text-primary-700 ring-1 ring-primary-200'
+                      : 'text-foreground/80 hover:text-primary-700 hover:bg-primary/10'
                   )}
                 >
                   {item.title}
@@ -81,8 +82,8 @@ export function MainNav({ items }: MainNavProps) {
 // ✅ FIXED List Item
 const ListItem = React.forwardRef<
   React.ElementRef<typeof Link>,
-  React.ComponentPropsWithoutRef<typeof Link> & { title: string }
->(({ className, title, children, href = '', ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof Link> & { title: string; isActive?: boolean }
+>(({ className, title, children, href = '', isActive, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -90,12 +91,15 @@ const ListItem = React.forwardRef<
           ref={ref}
           href={href}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'block select-none space-y-1 rounded-3xl p-3 leading-none no-underline outline-none transition-colors',
+            isActive
+              ? 'bg-primary/15 text-primary-700 ring-1 ring-primary-200'
+              : 'hover:bg-gray-100 hover:text-primary-700 focus:bg-primary/15 focus:text-primary-700 active:bg-primary/20',
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-sm font-semibold leading-none">{title}</div>
           {children && (
             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
               {children}

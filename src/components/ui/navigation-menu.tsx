@@ -8,7 +8,7 @@ import { ChevronDownIcon } from "lucide-react"
 function NavigationMenu({
   className,
   children,
-  viewport = true,
+  viewport = false,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
   viewport?: boolean
@@ -59,7 +59,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted"
+  "group/navigation-menu-trigger inline-flex h-10 w-max cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 outline-none hover:bg-secondary/10 hover:text-secondary-700 focus:bg-secondary/10 focus-visible:ring-3 focus-visible:ring-secondary/30 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-secondary/10 data-open:border data-open:border-secondary/20"
 )
 
 function NavigationMenuTrigger({
@@ -89,18 +89,18 @@ function NavigationMenuContent({
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
   return (
     <NavigationMenuPrimitive.Content
-      data-slot="navigation-menu-content"
-      className={cn(
-        "absolute left-1/2 -translate-x-1/2 mt-2 w-[300px] rounded-xl border shadow-lg overflow-hidden",
-        "bg-white dark:bg-zinc-900 dark:border-zinc-800",
-        className
-      )}
-      >
-  <div className="flex flex-col gap-1 p-2 bg-white dark:bg-zinc-900">
+  data-slot="navigation-menu-content"
+  className={cn(
+    "absolute top-full mt-2 min-w-[300px] max-w-sm rounded-[1.5rem] border border-slate-200/70 bg-white/95 shadow-2xl shadow-slate-900/10 backdrop-blur-xl overflow-hidden",
+    "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+    "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+    className
+  )}
+>
+  <div className="flex flex-col gap-2 p-4 bg-white/80 backdrop-blur-sm">
     {props.children}
   </div>
 </NavigationMenuPrimitive.Content>
-
   )
 }
 
@@ -109,7 +109,7 @@ function NavigationMenuViewport({
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
   return (
-    <div className="absolute left-1/2 top-full z-50 flex -translate-x-1/2 justify-center">
+    <div className="absolute left-0 top-full z-50">
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
@@ -132,7 +132,7 @@ function NavigationMenuLink({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "flex items-center gap-2 rounded-lg p-2 text-sm transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md data-active:bg-muted/50 data-active:hover:bg-muted data-active:focus:bg-muted [&_svg:not([class*='size-'])]:size-4",
+        "flex items-center gap-2 rounded-3xl px-3 py-3 text-sm font-medium transition-all outline-none hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary focus-visible:ring-3 focus-visible:ring-primary/30 focus-visible:outline-none in-data-[slot=navigation-menu-content]:rounded-2xl data-active:bg-primary/15 data-active:text-primary [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

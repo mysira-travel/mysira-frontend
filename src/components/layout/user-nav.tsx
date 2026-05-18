@@ -15,14 +15,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Badge } from '@/components/ui/badge'
+import type { SessionUser } from '@/types'
 
 interface UserNavProps {
-  user?: {
-    name: string
-    email: string
-    image?: string
-    role: 'traveler' | 'provider' | 'admin'
-  }
+  user?: SessionUser
 }
 
 export function UserNav({ user }: UserNavProps) {
@@ -41,7 +37,7 @@ export function UserNav({ user }: UserNavProps) {
 
   const initials = user.name
     .split(' ')
-    .map((n) => n[0])
+    .map((n: string) => n[0])
     .join('')
     .toUpperCase()
     .slice(0, 2)

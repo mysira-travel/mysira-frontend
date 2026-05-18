@@ -2,99 +2,110 @@ import { MainNavItem } from '@/types/navigation'
 
 export const mainNavigation: MainNavItem[] = [
   {
-    title: 'Découvrir',
+    title: 'Discover',
     href: '/search',
-    description: 'Explorer toutes les expériences',
+    description: 'Explore authentic Sahara experiences',
   },
+
   {
     title: 'Destinations',
     href: '/destinations',
-    description: 'Villes et régions du Sahara',
+    description: 'Cities and regions of the Tunisian Sahara',
     items: [
       {
         title: 'Douz',
         href: '/destinations/douz',
-        description: 'La porte du Sahara',
+        description: 'Gateway to the Sahara',
       },
       {
         title: 'Tozeur',
         href: '/destinations/tozeur',
-        description: 'Oasis et palmeraies',
+        description: 'Oases and palm groves',
       },
       {
         title: 'Matmata',
         href: '/destinations/matmata',
-        description: 'Villages troglodytes',
+        description: 'Troglodyte villages',
       },
     ],
   },
+
   {
-    title: 'Expériences',
+    title: 'Experiences',
     href: '/experiences',
-    description: 'Par type d\'activité',
+    description: 'Activities and cultural adventures',
     items: [
       {
-        title: 'Camps Désert',
+        title: 'Desert Camps',
         href: '/experiences/camps',
-        description: 'Nuits sous les étoiles',
+        description: 'Sleep under the Sahara stars',
         icon: 'compass',
       },
       {
-        title: 'Guides Locaux',
+        title: 'Local Guides',
         href: '/experiences/guides',
-        description: 'Explorations guidées',
+        description: 'Authentic guided explorations',
         icon: 'map',
       },
       {
-        title: 'Agences',
+        title: 'Tours & Agencies',
         href: '/experiences/agencies',
-        description: 'Circuits organisés',
+        description: 'Organized cultural journeys',
         icon: 'users',
       },
       {
         title: 'Artisans',
         href: '/experiences/artisans',
-        description: 'Découverte artisanale',
+        description: 'Traditional craftsmanship',
         icon: 'palette',
       },
     ],
   },
+
   {
-    title: 'Comment ça marche',
+    title: 'Stories',
+    href: '/stories',
+    description: 'Travel stories and inspiration',
+  },
+
+  {
+    title: 'How It Works',
     href: '/how-it-works',
+    description: 'Booking and platform guide',
   },
 ]
 
 export const userNavigation = {
   traveler: [
     {
-      title: 'Mes réservations',
+      title: 'My Bookings',
       href: '/dashboard/bookings',
     },
     {
-      title: 'Mes favoris',
+      title: 'Favorites',
       href: '/dashboard/favorites',
     },
     {
-      title: 'Profil',
+      title: 'Profile',
       href: '/dashboard/profile',
     },
   ],
+
   provider: [
     {
-      title: 'Tableau de bord',
+      title: 'Dashboard',
       href: '/provider',
     },
     {
-      title: 'Mes annonces',
+      title: 'My Listings',
       href: '/provider/listings',
     },
     {
-      title: 'Demandes',
+      title: 'Requests',
       href: '/provider/inquiries',
     },
     {
-      title: 'Paramètres',
+      title: 'Settings',
       href: '/provider/settings',
     },
   ],
