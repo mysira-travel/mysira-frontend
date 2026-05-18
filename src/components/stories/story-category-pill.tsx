@@ -11,15 +11,15 @@ const CATEGORY_LABELS: Record<StoryCategory, string> = {
   guide:      'Rencontre',
 }
 
-// Each category gets a distinct treatment — no generic pill soup
+// Warm, accessible color palette for light backgrounds (WCAG AA compliant)
 const CATEGORY_STYLES: Record<StoryCategory, string> = {
-  culture:    'text-amber-200 border-amber-400/50 bg-amber-500/15 group-hover:border-amber-300 group-hover:bg-amber-500/25 group-hover:text-amber-100 transition-all duration-300',
-  desert:     'text-orange-200 border-orange-400/50 bg-orange-500/15 group-hover:border-orange-300 group-hover:bg-orange-500/25 group-hover:text-orange-100 transition-all duration-300',
-  gastronomy: 'text-rose-200 border-rose-400/50 bg-rose-500/15 group-hover:border-rose-300 group-hover:bg-rose-500/25 group-hover:text-rose-100 transition-all duration-300',
-  artisan:    'text-teal-200 border-teal-400/50 bg-teal-500/15 group-hover:border-teal-300 group-hover:bg-teal-500/25 group-hover:text-teal-100 transition-all duration-300',
-  festival:   'text-yellow-200 border-yellow-400/50 bg-yellow-500/15 group-hover:border-yellow-300 group-hover:bg-yellow-500/25 group-hover:text-yellow-100 transition-all duration-300',
-  nomadic:    'text-stone-200 border-stone-400/50 bg-stone-500/15 group-hover:border-stone-300 group-hover:bg-stone-500/25 group-hover:text-stone-100 transition-all duration-300',
-  guide:      'text-sky-200 border-sky-400/50 bg-sky-500/15 group-hover:border-sky-300 group-hover:bg-sky-500/25 group-hover:text-sky-100 transition-all duration-300',
+  culture:    'bg-amber-100 text-amber-800 border-amber-200',
+  desert:     'bg-orange-100 text-orange-800 border-orange-200',
+  gastronomy: 'bg-rose-100 text-rose-800 border-rose-200',
+  artisan:    'bg-teal-100 text-teal-800 border-teal-200',
+  festival:   'bg-yellow-100 text-yellow-800 border-yellow-200',
+  nomadic:    'bg-stone-100 text-stone-800 border-stone-200',
+  guide:      'bg-sky-100 text-sky-800 border-sky-200',
 }
 
 interface StoryCategoryPillProps {
@@ -31,7 +31,7 @@ export function StoryCategoryPill({ category, className }: StoryCategoryPillProp
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full border px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em]',
+        'inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] transition-all duration-300',
         CATEGORY_STYLES[category],
         className
       )}

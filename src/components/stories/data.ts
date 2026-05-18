@@ -20,6 +20,7 @@ export const storiesData: Story[] = [
     readTime: '7 min',
     href: '/stories/nuit-bivouac-grand-erg-oriental',
     featured: true,
+    publishedDate: '2024-06-01',
   },
   {
     id: 's-02',
@@ -35,6 +36,7 @@ export const storiesData: Story[] = [
     location: 'Guellala, Jerba',
     readTime: '5 min',
     href: '/stories/mains-argile-fatima-potiere',
+    publishedDate: '2024-05-15',
   },
   {
     id: 's-03',
@@ -50,6 +52,7 @@ export const storiesData: Story[] = [
     location: 'Douz, Kébili',
     readTime: '8 min',
     href: '/stories/festival-sahara-douz-memoire-nomade',
+    publishedDate: '2024-05-15',
   },
   {
     id: 's-04',
@@ -65,6 +68,7 @@ export const storiesData: Story[] = [
     location: 'Douz, Kébili',
     readTime: '6 min',
     href: '/stories/couscous-au-bois-recette-berbere',
+    publishedDate: '2024-06-01',
   },
   {
     id: 's-05',
@@ -80,6 +84,7 @@ export const storiesData: Story[] = [
     location: 'Chott el-Jérid, Tozeur',
     readTime: '5 min',
     href: '/stories/chott-el-jerid-traversee-4x4',
+    publishedDate: '2025-04-01',
   },
   {
     id: 's-06',
@@ -95,6 +100,7 @@ export const storiesData: Story[] = [
     location: 'El-Hamma, Gabès',
     readTime: '4 min',
     href: '/stories/tissage-berbere-tapis-memoire',
+    publishedDate: '2026-05-15',
   },
   {
     id: 's-07',
@@ -110,5 +116,6 @@ export const storiesData: Story[] = [
     location: 'Ksar Ghilane, Gabès',
     readTime: '6 min',
     href: '/stories/ksar-ghilane-oasis-source-thermale',
+    publishedDate: '2025-11-15',
   },
 ]
