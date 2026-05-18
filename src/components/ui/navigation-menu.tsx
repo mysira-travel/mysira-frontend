@@ -37,7 +37,7 @@ function NavigationMenuList({
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
       className={cn(
-        "group flex flex-1 list-none items-center justify-center gap-0",
+        "group flex flex-1 list-none items-center justify-center gap-1",
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group/navigation-menu-trigger inline-flex h-10 w-max cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 outline-none hover:bg-secondary/10 hover:text-secondary-700 focus:bg-secondary/10 focus-visible:ring-3 focus-visible:ring-secondary/30 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-popup-open:bg-secondary/10 data-open:border data-open:border-secondary/20"
+  "group/navigation-menu-trigger inline-flex h-10 w-max cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 outline-none hover:bg-primary/10 hover:text-primary-700 focus:bg-primary/10 focus:text-primary-700 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-primary/15 data-[state=open]:text-primary-700 data-[state=open]:ring-1 data-[state=open]:ring-primary-200"
 )
 
 function NavigationMenuTrigger({
@@ -72,13 +72,16 @@ function NavigationMenuTrigger({
       data-slot="navigation-menu-trigger"
       className={cn(
         navigationMenuTriggerStyle(),
-        "justify-center text-center",
+        "justify-center text-center gap-1",
         className
       )}
       {...props}
     >
-      {children}{" "}
-      <ChevronDownIcon className="relative top-px ml-1 size-3 transition duration-300 group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180" aria-hidden="true" />
+      {children}
+      <ChevronDownIcon 
+        className="relative top-px size-3 transition-transform duration-300 group-data-[state=open]/navigation-menu-trigger:rotate-180" 
+        aria-hidden="true" 
+      />
     </NavigationMenuPrimitive.Trigger>
   )
 }
@@ -89,18 +92,18 @@ function NavigationMenuContent({
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Content>) {
   return (
     <NavigationMenuPrimitive.Content
-  data-slot="navigation-menu-content"
-  className={cn(
-    "absolute top-full mt-2 min-w-[300px] max-w-sm rounded-[1.5rem] border border-slate-200/70 bg-white/95 shadow-2xl shadow-slate-900/10 backdrop-blur-xl overflow-hidden",
-    "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
-    "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-    className
-  )}
->
-  <div className="flex flex-col gap-2 p-4 bg-white/80 backdrop-blur-sm">
-    {props.children}
-  </div>
-</NavigationMenuPrimitive.Content>
+      data-slot="navigation-menu-content"
+      className={cn(
+        "absolute left-0 top-full mt-3 w-auto min-w-[220px] origin-top",
+        "rounded-2xl border border-slate-200/80 bg-white shadow-xl shadow-slate-900/10",
+        "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
+        "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out",
+        "data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
+        "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
+        className
+      )}
+      {...props}
+    />
   )
 }
 
@@ -109,13 +112,14 @@ function NavigationMenuViewport({
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
   return (
-    <div className="absolute left-0 top-full z-50">
+    <div className="absolute left-0 top-full z-50 flex justify-center">
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
-          "mt-2 w-[280px] rounded-lg bg-popover shadow-lg ring-1 ring-border",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
-          "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+          "relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-top overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xl shadow-slate-900/10",
+          "data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95",
+          "data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95",
+          "duration-200",
           className
         )}
         {...props}
@@ -132,7 +136,10 @@ function NavigationMenuLink({
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-link"
       className={cn(
-        "flex items-center gap-2 rounded-3xl px-3 py-3 text-sm font-medium transition-all outline-none hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary focus-visible:ring-3 focus-visible:ring-primary/30 focus-visible:outline-none in-data-[slot=navigation-menu-content]:rounded-2xl data-active:bg-primary/15 data-active:text-primary [&_svg:not([class*='size-'])]:size-4",
+        "block w-full rounded-xl px-4 py-2.5 text-sm font-medium transition-all outline-none",
+        "hover:bg-primary/10 hover:text-primary-700",
+        "focus:bg-primary/10 focus:text-primary-700 focus-visible:ring-2 focus-visible:ring-primary-500",
+        "data-[active]:bg-primary/15 data-[active]:text-primary-700",
         className
       )}
       {...props}
@@ -148,12 +155,14 @@ function NavigationMenuIndicator({
     <NavigationMenuPrimitive.Indicator
       data-slot="navigation-menu-indicator"
       className={cn(
-        "top-full z-1 flex h-1.5 items-end justify-center overflow-hidden data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:animate-in data-[state=visible]:fade-in",
+        "top-full z-10 flex h-2 items-end justify-center overflow-hidden",
+        "data-[state=visible]:animate-in data-[state=visible]:fade-in data-[state=visible]:slide-in-from-top-1",
+        "data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=hidden]:slide-out-to-top-1",
         className
       )}
       {...props}
     >
-      <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
+      <div className="relative -top-1 h-2 w-2 rotate-45 rounded-tl-sm border-l border-t border-slate-200/80 bg-white" />
     </NavigationMenuPrimitive.Indicator>
   )
 }

@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, ChevronRight } from 'lucide-react'
+import { Menu, ChevronRight, ChevronDown, Sparkles, Compass, Map, BookOpen, Info, Star, Eye } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { MainNavItem } from '@/types/navigation'
@@ -16,13 +16,23 @@ interface MobileNavProps {
     items: MainNavItem[]
 }
 
+// Icon mapping for mobile nav
+const getMobileIcon = (title: string) => {
+  switch (title.toLowerCase()) {
+    case 'discover': return <Eye className="h-4 w-4" />
+    case 'destinations': return <Map className="h-4 w-4" />
+    case 'experiences': return <Compass className="h-4 w-4" />
+    case 'stories': return <BookOpen className="h-4 w-4" />
+    case 'how it works': return <Info className="h-4 w-4" />
+    default: return <Star className="h-4 w-4" />
+  }
+}
+
 export function MobileNav({ items }: MobileNavProps) {
     const pathname = usePathname()
     const [open, setOpen] = React.useState(false)
 
-    // Close mobile menu on route change
     React.useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setOpen(false)
     }, [pathname])
 
@@ -32,44 +42,47 @@ export function MobileNav({ items }: MobileNavProps) {
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="lg:hidden"
+                    className="lg:hidden hover:bg-primary/10"
                     aria-label="Toggle menu"
                 >
-                    <Menu className="h-6 w-6" />
+                    <Menu className="h-5 w-5" />
                 </Button>
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="w-full max-w-sm p-0 rounded-r-[1.5rem] border-l border-slate-200/70 bg-background/95 shadow-2xl shadow-slate-900/10"
+              className="w-full max-w-sm p-0 rounded-r-2xl border-r border-slate-200/70 bg-white shadow-2xl"
             >
-                <SheetHeader className="border-b border-slate-200/70 px-6 py-5">
-                    <div className="flex items-center justify-between gap-2">
+                <SheetHeader className="border-b border-slate-200/70 px-5 py-4">
+                    <div className="flex items-center justify-between">
                         <Logo showText />
                     </div>
-                    <SheetDescription className="mt-3 text-sm text-muted-foreground">
-                        Accédez aux différentes sections pour planifier votre voyage dans le Sahara.
+                    <SheetDescription className="mt-2 text-xs text-gray-500">
+                        Découvrez le Sahara autrement
                     </SheetDescription>
                 </SheetHeader>
+                
                 <div className="flex h-full flex-col">
-
-                    {/* Navigation */}
-                    <ScrollArea className="flex-1 py-5">
-                        <nav className="flex flex-col gap-3 px-4">
+                    <ScrollArea className="flex-1 py-3">
+                        <nav className="flex flex-col gap-1 px-3">
                             {items.map((item) => (
                                 <MobileNavItem key={item.href} item={item} />
                             ))}
                         </nav>
                     </ScrollArea>
 
-                    {/* Footer CTA */}
-                    <div className="border-t border-slate-200/70 bg-slate-50 p-5">
-                        <div className="grid gap-3">
-                            <Button asChild variant="default" size="lg" className="w-full">
-                                <Link href="/login">{"Se connecter"}</Link>
-                            </Button>
-                            <Button asChild variant="outline" size="lg" className="w-full">
-                                <Link href="/register">{"S'inscrire"}</Link>
-                            </Button>
+                    {/* Footer CTA - Provider section */}
+                    <div className="border-t border-slate-200/70 bg-gradient-to-br from-amber-50 to-white p-5">
+                        <div className="rounded-xl bg-primary-600 p-4 text-center">
+                            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/80">
+                                Vous êtes un prestataire ?
+                            </p>
+                            <Link
+                                href="/register?role=provider"
+                                className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-primary-600 transition-all hover:bg-amber-50 hover:shadow-md"
+                            >
+                                <Sparkles className="h-3.5 w-3.5" />
+                                Proposer une expérience
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -78,7 +91,7 @@ export function MobileNav({ items }: MobileNavProps) {
     )
 }
 
-// Mobile Nav Item with Accordion
+// Improved Mobile Nav Item with better visual hierarchy
 function MobileNavItem({ item }: { item: MainNavItem }) {
     const pathname = usePathname()
     const [expanded, setExpanded] = React.useState(false)
@@ -91,50 +104,69 @@ function MobileNavItem({ item }: { item: MainNavItem }) {
             <Link
                 href={item.href}
                 className={cn(
-                    'flex items-center justify-between rounded-3xl px-4 py-4 text-sm font-semibold transition-colors',
+                    'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200',
                     isActive
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-foreground/80 hover:bg-primary/5 hover:text-primary'
+                        ? 'bg-primary/10 text-primary-700'
+                        : 'text-gray-700 hover:bg-primary/5 hover:text-primary-700'
                 )}
             >
-                {item.title}
+                <span className="text-primary-500">
+                    {getMobileIcon(item.title)}
+                </span>
+                <span className="flex-1">{item.title}</span>
+                {item.description && (
+                    <span className="text-[10px] text-gray-400">
+                        {item.description}
+                    </span>
+                )}
             </Link>
         )
     }
 
     return (
-        <div>
+        <div className="rounded-xl border border-gray-100 bg-white/50">
             <button
                 onClick={() => setExpanded(!expanded)}
                 className={cn(
-                    'flex w-full items-center justify-between rounded-3xl px-4 py-4 text-sm font-semibold transition-colors',
+                    'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200',
                     isActive
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-foreground/80 hover:bg-primary/5 hover:text-primary'
+                        ? 'bg-primary/10 text-primary-700'
+                        : 'text-gray-700 hover:bg-primary/5 hover:text-primary-700'
                 )}
             >
-                {item.title}
-                <ChevronRight
+                <span className="text-primary-500">
+                    {getMobileIcon(item.title)}
+                </span>
+                <span className="flex-1 text-left">{item.title}</span>
+                <ChevronDown
                     className={cn(
-                        'h-4 w-4 transition-transform',
-                        expanded && 'rotate-90'
+                        'h-4 w-4 transition-transform duration-200',
+                        expanded && 'rotate-180'
                     )}
                 />
             </button>
+            
             {expanded && (
-                <div className="ml-4 mt-1 space-y-1">
+                <div className="ml-4 mr-2 mb-2 mt-1 space-y-1 border-l-2 border-primary-200 pl-3">
                     {item.items?.map((subItem) => (
                         <Link
                             key={subItem.href}
                             href={subItem.href}
                             className={cn(
-                                'flex items-center rounded-3xl px-4 py-3 text-sm transition-colors',
+                                'flex flex-col rounded-lg px-4 py-2.5 transition-all duration-200',
                                 pathname === subItem.href
-                                    ? 'bg-primary/5 text-primary'
-                                    : 'text-foreground/70 hover:bg-primary/5 hover:text-primary'
+                                    ? 'bg-primary/5 text-primary-700'
+                                    : 'text-gray-600 hover:bg-primary/5 hover:text-primary-700'
                             )}
                         >
-                            {subItem.title}
+                            <span className="text-sm font-medium">
+                                {subItem.title}
+                            </span>
+                            {subItem.description && (
+                                <span className="text-[10px] text-gray-400">
+                                    {subItem.description}
+                                </span>
+                            )}
                         </Link>
                     ))}
                 </div>
