@@ -26,4 +26,5 @@ export interface Story {
   readTime: string        // e.g. "6 min"
   href: string
   featured?: boolean      // First story in array is featured if true
+  publishedDate: string   // ISO format date for sorting and display
 }
