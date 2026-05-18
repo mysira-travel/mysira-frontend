@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { siteConfig } from '@/config/site'
 import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'  // created in Block D
+import { Providers } from '@/components/providers'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,19 +17,25 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
+
   description: siteConfig.description,
   keywords: siteConfig.keywords,
+
   authors: [
     {
       name: siteConfig.author.name,
       url: siteConfig.author.url,
     },
   ],
+
   creator: siteConfig.author.name,
+
   openGraph: {
     type: 'website',
     locale: siteConfig.locale,
@@ -44,16 +52,19 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
+
   robots: {
     index: true,
     follow: true,
   },
+
   icons: {
     icon: '/favicon.ico',
   },
@@ -61,18 +72,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang={siteConfig.defaultLocale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
-      >
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-        </div>
+      <body className={`${geistSans.variable} ${geistMono.variable}  bg-background font-sans antialiased`}>
+        <Providers>
+          <div className="relative flex  flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   )

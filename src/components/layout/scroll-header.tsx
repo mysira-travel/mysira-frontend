@@ -20,10 +20,10 @@ export function ScrollHeader({ children, className }: ScrollHeaderProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-200',
+        'sticky top-0 z-50 w-full transition-all duration-300 ease-out',
         isScrolled
-          ? 'border-b bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60'
-          : 'border-b bg-background',
+          ? 'border-b border-slate-200/70 bg-background/95 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.2)] backdrop-blur-xl'
+          : 'bg-background/80 shadow-none supports-[backdrop-filter]:backdrop-blur-xl',
         className
       )}
     >
